@@ -1,0 +1,5 @@
+python==3.8
+redis
+pymongo
+sentence-transformers
+boto3
