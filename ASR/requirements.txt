@@ -1,1 +1,6 @@
-
+python==3.8
+redis
+pymongo
+openai-whisper
+boto3
+librosa
