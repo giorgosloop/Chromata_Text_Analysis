@@ -4,6 +4,7 @@ import time
 from upload_download_files import S3Handler
 import redis
 import librosa
+import moviepy.editor as mp
 
 def asr(message, asr_class):
 
@@ -47,12 +48,18 @@ def asr(message, asr_class):
         )
 
         # convert file to sound if is video
-        #......
-        #......
+     
+        if message["object_type"] == 'video':        
+            clip = mp.VideoFileClip(path+filename)
+            filename = str(media_id) +'.wav'
+            clip.audio.write_audiofile(path+filename)
+
+      
+
 
         #call asr function like text=asr(file) to transform speech to text
         s,sr=librosa.load(path+filename,sr = 16000)
-        text = asr_class.run_ASR(s)
+        text = asr_class.run_ASR(s, sr)
         #....
         #....
 
@@ -93,7 +100,3 @@ def asr(message, asr_class):
         print("[INFO] ASR result was successfully sent!")
     except Exception as e:
         print(f"ERROR:  {e}")
-
-
-
-
