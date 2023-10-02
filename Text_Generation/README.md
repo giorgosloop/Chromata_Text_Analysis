@@ -1,1 +1,1 @@
-
+This is the code for the text generation service developed in the context of the "Chromata" project. It produces information about traditional customs and dances using metadata and information extracted from the dance recognition service.
